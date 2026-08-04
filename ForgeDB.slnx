@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ForgeDB.sqlproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>
