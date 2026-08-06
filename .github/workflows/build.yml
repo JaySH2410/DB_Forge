@@ -30,7 +30,7 @@ jobs:
       #   uses: microsoft/sqlpackage-action@v2
 
       - name: Generate Deployment Script
-        shell: pwsh
+        shell: powershell
         run: |
           $dacpac = Get-ChildItem "${{ github.workspace }}" -Recurse -Filter *.dacpac | Select-Object -First 1
           
@@ -41,7 +41,7 @@ jobs:
             /OutputPath:"Deploy.sql"
           
       - name: Generate Deploy Report
-        shell: pwsh
+        shell: powershell
         run: |
           $dacpac = Get-ChildItem "${{ github.workspace }}" -Recurse -Filter *.dacpac | Select-Object -First 1
           
