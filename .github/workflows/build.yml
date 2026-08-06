@@ -6,7 +6,7 @@ jobs:
   
   build:
     
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout Source
@@ -25,6 +25,36 @@ jobs:
 
       - name: Build
         run: dotnet build ForgeDB.slnx --configuration Release --no-restore
+
+      # - name: Install SqlPackage
+      #   uses: microsoft/sqlpackage-action@v2
+
+      - name: Generate Deployment Script
+        run: |
+          sqlpackage \
+            /Action:Script \
+            /SourceFile:"bin/Release/**/*.dacpac" \
+            /TargetConnectionString:"${{ secrets.DB_CONNECTION_STRING }}" \
+            /OutputPath:"Deploy.sql"
+
+      - name: Generate Drift Report
+        run: |
+          sqlpackage \
+            /Action:DriftReport \
+            /SourceConnectionString:"${{ secrets.DB_CONNECTION_STRING }}" \
+            /OutputPath:"DriftReport.xml"
+
+      - name: Upload Deployment Script
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-script
+          path: Deploy.sql
+
+      - name: Upload Drift Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: drift-report
+          path: DriftReport.xml
 
       - name: Upload DACPAC
         uses: actions/upload-artifact@v4
