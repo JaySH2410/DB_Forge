@@ -30,18 +30,18 @@ jobs:
       #   uses: microsoft/sqlpackage-action@v2
 
       - name: Generate Deployment Script
-        run: |
-          sqlpackage \
-            /Action:Script \
-            /SourceFile:"bin/Release/**/*.dacpac" \
-            /TargetConnectionString:"${{ secrets.DB_CONNECTION_STRING }}" \
-            /OutputPath:"Deploy.sql"
-
+        run: >
+          sqlpackage
+          /Action:Script
+          /SourceFile:"path\to\ForgeDB.dacpac"
+          /TargetConnectionString:"${{ secrets.DB_CONNECTION_STRING }}"
+          /OutputPath:"Deploy.sql"
+          
       - name: Generate Drift Report
-        run: |
-          sqlpackage \
-            /Action:DriftReport \
-            /SourceConnectionString:"${{ secrets.DB_CONNECTION_STRING }}" \
+        run: >
+          sqlpackage
+            /Action:DriftReport
+            /SourceConnectionString:"${{ secrets.DB_CONNECTION_STRING }}"
             /OutputPath:"DriftReport.xml"
 
       - name: Upload Deployment Script
