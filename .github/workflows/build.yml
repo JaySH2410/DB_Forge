@@ -33,14 +33,15 @@ jobs:
         run: >
           sqlpackage
           /Action:Script
-          /SourceFile:"path\to\ForgeDB.dacpac"
+          /SourceFile:"bin/Release/**/*.dacpac"
           /TargetConnectionString:"${{ secrets.DB_CONNECTION_STRING }}"
           /OutputPath:"Deploy.sql"
           
-      - name: Generate Drift Report
+      - name: Generate Deploy Report
         run: >
           sqlpackage
-            /Action:DriftReport
+            /Action:DeployReport
+            /SourceFile:"bin/Release/**/*.dacpac"
             /SourceConnectionString:"${{ secrets.DB_CONNECTION_STRING }}"
             /OutputPath:"DriftReport.xml"
 
