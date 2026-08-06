@@ -14,7 +14,7 @@
     [UpdatedBy] INT NULL, 
     [DeletedAt] DATETIMEOFFSET NULL ,
     [DeletedBy] INT NULL, 
-    CONSTRAINT [FK_RefreshToken_User_UserId] FOREIGN KEY (UserId) REFERENCES [User](id)
+    CONSTRAINT [FK_RefreshToken_User_UserId] FOREIGN KEY (UserId) REFERENCES [User](Id)
 )
 
 GO
@@ -23,6 +23,14 @@ CREATE NONCLUSTERED INDEX [IX_RefreshToken_UserId] ON [dbo].[RefreshToken] ([Use
 
 GO
 
-CREATE NONCLUSTERED INDEX [IX_RefreshToken_TokenHash] ON [dbo].[RefreshToken] ([TokenHash])
+CREATE UNIQUE NONCLUSTERED INDEX [IX_RefreshToken_TokenHash] ON [dbo].[RefreshToken] ([TokenHash])
+
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [IX_RefreshToken_Uuid] ON [dbo].[RefreshToken] (Uuid)
+
+--GO
+
+--CREATE CLUSTERED INDEX [IX_RefreshToken_Id] ON [dbo].[RefreshToken] (Id)
 
 
