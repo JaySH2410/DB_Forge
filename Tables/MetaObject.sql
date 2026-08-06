@@ -1,3 +1,4 @@
+GO
 CREATE TABLE [dbo].[MetaObject]
 (
     [Id] INT NOT NULL PRIMARY KEY,
@@ -18,7 +19,9 @@ CREATE TABLE [dbo].[MetaObject]
     CONSTRAINT [FK_MetaObject_Application_ApplicationUid] FOREIGN KEY (ApplicationUid) REFERENCES [Application](Uuid)
     CONSTRAINT [FK_MetaObject_MetaObject_ObjTypeUid] FOREIGN KEY (ObjTypeUid) REFERENCES [MetaObject](ObjUid)
 )
-
+GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_MetaObject_ObjUid] ON [dbo].[MetaObject] (ObjUid)
+GO
 CREATE NONCLUSTERED INDEX [IX_MetaObject_ObjTypeUid] ON [dbo].[MetaObject] (ObjTypeUid)
+GO
 CREATE NONCLUSTERED INDEX [IX_MetaObject_ApplicationUid] ON [dbo].[MetaObject] (ApplicationUid)

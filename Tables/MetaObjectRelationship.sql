@@ -1,3 +1,4 @@
+GO
 CREATE TABLE [dbo].[MetaObjectRelationship]
 (
     [Id] INT NOT NULL PRIMARY KEY,
@@ -20,11 +21,17 @@ CREATE TABLE [dbo].[MetaObjectRelationship]
     CONSTRAINT [FK_MetaObjectRelationship_MetaObject_End1Uid] FOREIGN KEY (End1Uid) REFERENCES [MetaObject](ObjUid)
     CONSTRAINT [FK_MetaObjectRelationship_MetaObject_End2Uid] FOREIGN KEY (End2Uid) REFERENCES [MetaObject](ObjUid)
 )
-
+GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_MetaObjectRelationship_RelUid] ON [dbo].[MetaObjectRelationship] (RelUid)
+GO
 CREATE NONCLUSTERED INDEX [IX_MetaObjectRelationship_RelTypeUid] ON [dbo].[MetaObjectRelationship] (RelTypeUid)
+GO
 CREATE NONCLUSTERED INDEX [IX_MetaObjectRelationship_End1Uid] ON [dbo].[MetaObjectRelationship] (End1Uid)
+GO
 CREATE NONCLUSTERED INDEX [IX_MetaObjectRelationship_End2Uid] ON [dbo].[MetaObjectRelationship] (End2Uid)
+GO
 CREATE NONCLUSTERED INDEX [IX_MetaObjectRelationship_RelTypeUid_End1Uid] ON [dbo].[MetaObjectRelationship] (RelTypeUid, End1Uid)
+GO
 CREATE NONCLUSTERED INDEX [IX_MetaObjectRelationship_RelTypeUid_End2Uid] ON [dbo].[MetaObjectRelationship] (RelTypeUid, End2Uid)
+GO
 CREATE NONCLUSTERED INDEX [IX_MetaObjectRelationship_RelTypeUid_End1Uid_End2Uid] ON [dbo].[MetaObjectRelationship] (RelTypeUid, End1Uid, End2Uid)
