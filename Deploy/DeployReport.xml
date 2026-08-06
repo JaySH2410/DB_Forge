@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DeploymentReport xmlns="http://schemas.microsoft.com/sqlserver/dac/DeployReport/2012/02">
+    <Alerts />
+    <Operations>
+        <Operation Name="Alter">
+            <Item Value="[dbo].[User]" Type="SqlTable" />
+        </Operation>
+        <Operation Name="Create">
+            <Item Value="[dbo].[User].[IX_User_PasswordHash]" Type="SqlIndex" />
+            <Item Value="[dbo].[User].[IX_User_Uuid]" Type="SqlIndex" />
+            <Item Value="[dbo].[FK_EmailVerificationToken_User_UserId]"
+                Type="SqlForeignKeyConstraint" />
+            <Item Value="[dbo].[FK_PasswordResetToken_User_UserId]" Type="SqlForeignKeyConstraint" />
+        </Operation>
+    </Operations>
+</DeploymentReport>
