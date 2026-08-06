@@ -48,7 +48,7 @@ jobs:
           sqlpackage `
             /Action:DeployReport `
             /SourceFile:"$($dacpac.FullName)" `
-            /SourceConnectionString:"${{ secrets.DB_CONNECTION_STRING }}" `
+            /TargetConnectionString:"${{ secrets.DB_CONNECTION_STRING }}" `
             /OutputPath:"DriftReport.xml"
 
       - name: Upload Deployment Script
